@@ -19,6 +19,17 @@ function App() {
     settodo(e.target.value)
   }
 
+  const handlecheckbox = (e) => {
+    let id = e.target.name;
+    let index = todos.findIndex(item=>{
+      return item.id === id;
+    })
+    let newtodos = [...todos];
+    newtodos[index].isCompleted = !newtodos[index].isCompleted;
+    settodos(newtodos)
+  }
+  
+
   return (
     <>
     <Navbar/>
@@ -34,9 +45,9 @@ function App() {
       </div>
       <h2 className='text-lg font-bold'>Your todos</h2>
       <div className="todos">
-        {todos.map((item,index)=>{
-        return <div key={index} className="todo flex justify-between py-2">
-          <input type="checkbox" value={todo.isCompleted}  />
+        {todos.map((item)=>{
+        return <div key={item.id} className="todo flex justify-between py-2">
+          <input name={item.id} onChange={handlecheckbox} type="checkbox" value={item.isCompleted}  />
           <div className={item.isCompleted?"line-through":""}>{item.todo}</div>
           <div className="buttons">
             <button onClick={handleedit} className='cursor-pointer font-bold bg-violet-800 hover:bg-violet-900 text-white rounded-md p-2 py-0.5 mx-1'>Edit</button>
