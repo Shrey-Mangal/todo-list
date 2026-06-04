@@ -5,11 +5,20 @@ import { v4 as uuidv4 } from "uuid";
 function App() {
   const [todo,settodo] = useState("")
   const [todos, settodos] = useState([])
-  const handleedit = () =>{
 
+  const handleedit = (e, id) =>{
+    let t = todos.filter(i=>i.id===id)
+    settodo(t[0].todo)
+    let newtodos = todos.filter(item=>{
+      return item.id!==id
+    }); 
+    settodos(newtodos) 
   }
-  const handledelete = () =>{
-    
+  const handledelete = (e, id) =>{
+    let newtodos = todos.filter(item=>{
+      return item.id!==id
+    }); 
+    settodos(newtodos) 
   }
   const handleadd = () =>{
     settodos([...todos, {id: uuidv4(), todo , isCompleted: false}]) 
@@ -45,13 +54,16 @@ function App() {
       </div>
       <h2 className='text-lg font-bold'>Your todos</h2>
       <div className="todos">
+        {todos.length===0 && <div className='font-bold'>No todos to display</div>}
         {todos.map((item)=>{
         return <div key={item.id} className="todo flex justify-between py-2">
-          <input name={item.id} onChange={handlecheckbox} type="checkbox" value={item.isCompleted}  />
-          <div className={item.isCompleted?"line-through":""}>{item.todo}</div>
+          <div className='flex gap-5'>
+            <input name={item.id} onChange={handlecheckbox} type="checkbox" value={item.isCompleted}  />
+            <div className={item.isCompleted?"line-through":""}>{item.todo}</div>
+          </div>
           <div className="buttons">
-            <button onClick={handleedit} className='cursor-pointer font-bold bg-violet-800 hover:bg-violet-900 text-white rounded-md p-2 py-0.5 mx-1'>Edit</button>
-            <button onClick={handledelete} className='cursor-pointer font-bold bg-violet-800 hover:bg-violet-900 text-white rounded-md p-2 py-0.5 mx-1'>Delete</button>
+            <button onClick={(e)=>{handleedit(e, item.id)}} className='cursor-pointer font-bold bg-violet-800 hover:bg-violet-900 text-white rounded-md p-2 py-0.5 mx-1'>Edit</button>
+            <button onClick={(e)=>{handledelete(e,item.id)}} className='cursor-pointer font-bold bg-violet-800 hover:bg-violet-900 text-white rounded-md p-2 py-0.5 mx-1'>Delete</button>
           </div>
         </div>
         })}
