@@ -12,7 +12,7 @@ function App() {
     let newtodos = todos.filter(item=>{
       return item.id!==id
     }); 
-    settodos(newtodos) 
+    settodos(newtodos);
   }
   const handledelete = (e, id) =>{
     let newtodos = todos.filter(item=>{
