@@ -7,6 +7,7 @@ A clean and responsive Todo List application built with **React**, **Vite**, and
 - [React](https://react.dev/) — UI components and state management
 - [Vite](https://vitejs.dev/) — Fast development build tool
 - [Tailwind CSS](https://tailwindcss.com/) — Utility-first CSS styling
+- [UUID](https://www.npmjs.com/package/uuid) — Generating unique IDs for tasks
 
 ## ✨ Features
 
@@ -15,6 +16,7 @@ A clean and responsive Todo List application built with **React**, **Vite**, and
 - ✅ Mark tasks as completed
 - 🗑️ Delete tasks
 - 💾 Tasks saved in localStorage
+- 🔑 Unique ID for each task using UUID
 - 📱 Fully responsive design
 
 ## 📁 Project Structure
@@ -59,12 +61,36 @@ cd todo-list
 npm install
 ```
 
-4. Start the development server
+4. Install UUID package
+```bash
+npm install uuid
+```
+
+5. Start the development server
 ```bash
 npm run dev
 ```
 
-5. Open your browser and go to `http://localhost:5173`
+6. Open your browser and go to `http://localhost:5173`
+
+## 🏗️ Project Initialization (How this project was created)
+
+### 1. Create Vite + React project
+```bash
+npm create vite@latest todo-list -- --template react
+cd todo-list
+npm install
+```
+
+### 2. Install and setup Tailwind CSS
+```bash
+npm install tailwindcss @tailwindcss/vite
+```
+
+### 3. Install UUID
+```bash
+npm install uuid
+```
 
 ## 📦 Build for Production
 
